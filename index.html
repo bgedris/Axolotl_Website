@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All About Axolotls</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f9f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #ff9a9e;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    nav {
+      background: #fecfef;
+      text-align: center;
+      padding: 0.5rem;
+    }
+
+    nav a {
+      margin: 0 15px;
+      color: #4a4a4a;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #d63384;
+    }
+
+    /* Slide Quiz Styling */
+    .quiz-slide {
+      display: none;
+    }
+
+    .quiz-slide.active {
+      display: block;
+    }
+
+    .quiz-img {
+      width: 100%;
+      max-height: 320px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .quiz-options button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      border: 2px solid #ff9a9e;
+      background-color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+
+    .quiz-options button:hover:not(:disabled) {
+      background-color: #fecfef;
+    }
+
+    .feedback {
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .correct {
+      color: #2e7d32;
+    }
+
+    .incorrect {
+      color: #c62828;
+    }
+
+    .next-btn {
+      background-color: #d63384;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 10px;
+      display: none;
+    }
+
+    .next-btn:hover {
+      background-color: #b0246c;
+    }
+
+    #score-container {
+      text-align: center;
+      font-size: 1.2rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #333;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>The Amazing Axolotl</h1>
+    <p>Discover the water monster of Lake Xochimilco</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#facts">Fun Facts</a>
+    <a href="#care">Care Guide</a>
+    <a href="#quiz">Photo Quiz</a>
+  </nav>
+
+  <div class="container">
+    
+    <section id="about" class="card">
+      <h2>What is an Axolotl?</h2>
+      <p>The axolotl (<em>Ambystoma mexicanum</em>) is a unique salamander native to Mexico. Unlike most amphibians, axolotls retain their larval features into adulthood—a phenomenon known as <strong>neoteny</strong>.</p>
+    </section>
+
+    <section id="facts" class="card">
+      <h2>Cool Facts</h2>
+      <ul>
+        <li><strong>Super Regeneration:</strong> They can regrow lost limbs, tails, organs, and even parts of their brain!</li>
+        <li><strong>Color Varieties:</strong> Wild axolotls are dark brown or black, but captive ones come in pink, white, and golden shades.</li>
+        <li><strong>Critically Endangered:</strong> Wild axolotls are severely endangered due to habitat pollution and invasive species.</li>
+      </ul>
+    </section>
+
+    <!-- INTERACTIVE SLIDE QUIZ SECTION -->
+    <section id="quiz" class="card">
+      <h2>Axolotl Photo Quiz</h2>
+      <p>Test your knowledge one question at a time!</p>
+
+      <!-- Slide 1 -->
+      <div id="slide-1" class="quiz-slide active">
+        <p><strong>Question 1 of 4: What type of axolotl morph is pictured below?</strong></p>
+        <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcQHY8Wc-7537dO-ZlaTGPtM0Z-pg5qioCYvUhYH9o2pzYztEVpf0QPirX379AK_1U5cMv-YEAOr0V9J6Mg" alt="Pink leucistic axolotl" class="quiz-img">
+        <div class="quiz-options">
+          <button onclick="checkAnswer(this, false, 1, 'slide-1-feedback', 'next-1')">Wild Type (Dark Brown/Black)</button>
+          <button onclick="checkAnswer(this, true, 1, 'slide-1-feedback', 'next-1')">Leucistic (Pink body with dark eyes)</button>
+          <button onclick="checkAnswer(this, false, 1, 'slide-1-feedback', 'next-1')">Golden Albino</button>
+        </div>
+        <div id="slide-1-feedback" class="feedback"></div>
+        <button id="next-1" class="next-btn" onclick="nextSlide(2)">Next Question &rarr;</button>
+      </div>
+
+      <!-- Slide 2 -->
+      <div id="slide-2" class="quiz-slide">
+        <p><strong>Question 2 of 4: Which morph is shown in this picture?</strong></p>
+        <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRssTHwJSVHvLZ44IAdyj38hSq-JrIa4gpfEGfwuSjOeEODuRL0aD3O_uqbYOlKiF91qZ38aMQ9TrWUFgY" alt="Dark mottled wild type axolotl" class="quiz-img">
+        <div class="quiz-options">
+          <button onclick="checkAnswer(this, true, 2, 'slide-2-feedback', 'next-2')">Wild Type</button>
+          <button onclick="checkAnswer(this, false, 2, 'slide-2-feedback', 'next-2')">White Albino</button>
+          <button onclick="checkAnswer(this, false, 2, 'slide-2-feedback', 'next-2')">Copper</button>
+        </div>
+        <div id="slide-2-feedback" class="feedback"></div>
+        <button id="next-2" class="next-btn" onclick="nextSlide(3)">Next Question &rarr;</button>
+      </div>
+
+      <!-- Slide 3 -->
+      <div id="slide-3" class="quiz-slide">
+        <p><strong>Question 3 of 4: What unique superpower are axolotls famous for in biology labs?</strong></p>
+        <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcQcIEVYc_Z8m1tl_ITEHPu9UtBdzrwIySdZAw_wJ5boZcuTq9vYdl-i-nw8Mueswe5899QJZ3XsOBJShSE" alt="White albino axolotl in tank" class="quiz-img">
+        <div class="quiz-options">
+          <button onclick="checkAnswer(this, false, 3, 'slide-3-feedback', 'next-3')">They can fly short distances</button>
+          <button onclick="checkAnswer(this, true, 3, 'slide-3-feedback', 'next-3')">They can regenerate lost limbs and organs</button>
+          <button onclick="checkAnswer(this, false, 3, 'slide-3-feedback', 'next-3')">They naturally change into land salamanders</button>
+        </div>
+        <div id="slide-3-feedback" class="feedback"></div>
+        <button id="next-3" class="next-btn" onclick="nextSlide(4)">Next Question &rarr;</button>
+      </div>
+
+      <!-- Slide 4 -->
+      <div id="slide-4" class="quiz-slide">
+        <p><strong>Question 4 of 4: Where is the only place in the world where wild axolotls are natively found?</strong></p>
+        <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcS5EybEE6Lfct5f9QRYIV_X8o6hT13L0Ii0QINqJaTLIjVo5_yVFoUl3lAIh6fz-b2j_aEMHCAA81xrZNc" alt="Close-up face of an axolotl" class="quiz-img">
+        <div class="quiz-options">
+          <button onclick="checkAnswer(this, false, 4, 'slide-4-feedback', 'next-4')">The Amazon River in South America</button>
+          <button onclick="checkAnswer(this, false, 4, 'slide-4-feedback', 'next-4')">Great Barrier Reef in Australia</button>
+          <button onclick="checkAnswer(this, true, 4, 'slide-4-feedback', 'next-4')">Lake Xochimilco in Mexico City</button>
+        </div>
+        <div id="slide-4-feedback" class="feedback"></div>
+        <button id="next-4" class="next-btn" onclick="showResults()">See Final Score &rarr;</button>
+      </div>
+
+      <!-- Results Slide -->
+      <div id="slide-results" class="quiz-slide">
+        <div id="score-container">
+          <h3>Quiz Complete! 🎉</h3>
+          <p id="final-score-text"></p>
+          <button class="next-btn" style="display: inline-block;" onclick="restartQuiz()">Retake Quiz</button>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="care" class="card">
+      <h2>Basic Aquarium Care</h2>
+      <ul>
+        <li><strong>Cool Water:</strong> Keep tank temperature between 60°F and 68°F (16°C – 20°C).</li>
+        <li><strong>Substrate:</strong> Use fine aquarium sand or a bare-bottom tank to avoid accidental ingestion of gravel.</li>
+        <li><strong>Low Flow:</strong> Use gentle filtration so strong currents don't cause stress.</li>
+      </ul>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Axolotl Fan Club</p>
+  </footer>
+
+  <script>
+    let score = 0;
+
+    function checkAnswer(button, isCorrect, slideNum, feedbackId, nextBtnId) {
+      const feedbackDiv = document.getElementById(feedbackId);
+      const parentOptions = button.parentElement;
+      
+      const buttons = parentOptions.querySelectorAll('button');
+      buttons.forEach(btn => btn.disabled = true);
+
+      if (isCorrect) {
+        button.style.backgroundColor = '#c8e6c9';
+        button.style.borderColor = '#2e7d32';
+        feedbackDiv.textContent = 'Correct! Great job!';
+        feedbackDiv.className = 'feedback correct';
+        score++;
+      } else {
+        button.style.backgroundColor = '#ffcdd2';
+        button.style.borderColor = '#c62828';
+        feedbackDiv.textContent = 'Not quite!';
+        feedbackDiv.className = 'feedback incorrect';
+      }
+
+      document.getElementById(nextBtnId).style.display = 'inline-block';
+    }
+
+    function nextSlide(slideNum) {
+      document.querySelectorAll('.quiz-slide').forEach(slide => {
+        slide.classList.remove('active');
+      });
+      document.getElementById('slide-' + slideNum).classList.add('active');
+    }
+
+    function showResults() {
+      document.querySelectorAll('.quiz-slide').forEach(slide => {
+        slide.classList.remove('active');
+      });
+      document.getElementById('slide-results').classList.add('active');
+      document.getElementById('final-score-text').textContent = `You scored ${score} out of 4 correct!`;
+    }
+
+    function restartQuiz() {
+      score = 0;
+      document.querySelectorAll('.quiz-slide button:not(.next-btn)').forEach(btn => {
+        btn.disabled = false;
+        btn.style.backgroundColor = 'white';
+        btn.style.borderColor = '#ff9a9e';
+      });
+      document.querySelectorAll('.feedback').forEach(fb => {
+        fb.textContent = '';
+      });
+      document.querySelectorAll('.next-btn').forEach(nb => {
+        nb.style.display = 'none';
+      });
+      nextSlide(1);
+    }
+  </script>
+
+</body>
+</html>
